@@ -8,7 +8,7 @@ api_key = os.getenv("API_KEY")
 
 # Set custom page configuration with a favicon and layout settings
 st.set_page_config(
-    page_title="AI HR ",
+    page_title="AI HR",
     page_icon="favi.png",  # Replace with your favicon path
     layout="wide",
     initial_sidebar_state="expanded",
@@ -23,10 +23,9 @@ st.markdown("""
             color: #000;
             padding: 1.5rem;
         }
-            
-        .element-container st-emotion-cache-f31m5j e1f1d6gn4{
+        .element-container st-emotion-cache-f31m5j e1f1d6gn4 {
             color: #fff;
-            }
+        }
         .st-expander {
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
@@ -71,17 +70,17 @@ st.markdown("""
             color: #333;
             font-weight: bold;
         }
-        #suitability-analysis-for-ml-engineer-position{
+        #suitability-analysis-for-ml-engineer-position {
             color: #000;
-            }
-            .st-b4{
+        }
+        .st-b4 {
             resize: none;
-            }
-            .e1y5xkzn3{
+        }
+        .e1y5xkzn3 {
             color: #000;
-            }
+        }
         h2 {
-            color: black
+            color: black;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -146,22 +145,24 @@ else:
     uploaded_file = st.file_uploader("Upload your resume (PDF format)...", type=['pdf'])
     
     # Text area to input Job Description
-    job_description = st.text_area("Enter the Job Description",placeholder="Enter Job Description")
+    job_description = st.text_area("Enter the Job Description", placeholder="Enter Job Description")
 
-    if uploaded_file is not None and job_description.strip():
-        # Extract text from the uploaded PDF
-        extracted_text = extract_text_from_pdf(uploaded_file)
+    # Button to analyze suitability
+    if st.button("Analyze Suitability"):
+        if uploaded_file is not None and job_description.strip():
+            # Extract text from the uploaded PDF
+            extracted_text = extract_text_from_pdf(uploaded_file)
 
-        # Use expander widget for better organization
-        with st.expander("Analyze Suitability"):
-            analysis = get_gemini_response(suitability_prompt, extracted_text, job_description)
-            st.write(analysis)
+            # Use expander widget for better organization
+            with st.expander("Analysis Result"):
+                analysis = get_gemini_response(suitability_prompt, extracted_text, job_description)
+                st.write(analysis)
 
-        # Additional tips
-        st.markdown("""
-            <div class="footer">
-                <p>Created by Tech Janta Party</p>
-            </div>
-            """, unsafe_allow_html=True)
-    else:
-        st.info("Please upload your resume and enter the job description to proceed.")
+            # Additional tips
+            st.markdown("""
+                <div class="footer">
+                    <p>Created by Tech Janta Party</p>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("Please upload your resume and enter the job description to proceed.")
