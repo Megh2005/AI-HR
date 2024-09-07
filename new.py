@@ -2,7 +2,6 @@ import streamlit as st
 import google.generativeai as genai
 import pdfplumber
 import os
-import re
 
 # Configure the Gemini API key using environment variable
 api_key = os.getenv("API_KEY")
@@ -80,7 +79,7 @@ st.markdown("""
         .e1y5xkzn3 {
             color: #000;
         }
-        h2,h3 {
+        h2 {
             color: black;
         }
     </style>
@@ -111,12 +110,6 @@ else:
         except Exception as e:
             st.error(f"Error extracting text from PDF: {e}")
         return text
-
-    # Function to extract contact details from text
-    def extract_contact_details(text):
-        emails = re.findall(r'[\w\.-]+@[\w\.-]+', text)
-        phone_numbers = re.findall(r'\b\d{10}\b', text)
-        return {"Emails": emails, "Phone Numbers": phone_numbers}
 
     # Function to get the Gemini response
     def get_gemini_response(prompt, resume_text, job_description):
@@ -160,31 +153,10 @@ else:
             # Extract text from the uploaded PDF
             extracted_text = extract_text_from_pdf(uploaded_file)
 
-            # Extract contact details
-            contact_details = extract_contact_details(extracted_text)
-
             # Use expander widget for better organization
             with st.expander("Analysis Result"):
                 analysis = get_gemini_response(suitability_prompt, extracted_text, job_description)
                 st.write(analysis)
-                
-            # Section for Contact Details
-            with st.expander("Contact Details Extracted from Resume"):
-                # Display emails
-                if contact_details.get("Emails"):
-                    st.markdown("### Emails")
-                    for email in contact_details["Emails"]:
-                        st.write(email)
-                else:
-                    st.write("No emails found.")
-
-                # Display phone numbers
-                if contact_details.get("Phone Numbers"):
-                    st.markdown("### Phone Numbers")
-                    for phone in contact_details["Phone Numbers"]:
-                        st.write(phone)
-                else:
-                    st.write("No phone numbers found.")
 
             # Additional tips
             st.markdown("""
