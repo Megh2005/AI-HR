@@ -145,7 +145,7 @@ else:
 
     3. **Analyze Suitability:** Click on the button to generate a detailed analysis of your suitability for the job based on your resume.
     
-    **Need Help?** If you encounter any issues or have questions, please contact us at [support@example.com](mailto:support@example.com).
+    **Need Help?** If you encounter any issues or have questions, please contact us at [techjantaparty@gmail.com](mailto:techjantaparty@gmail.com).
     """)
 
     # File upload widget
