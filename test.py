@@ -81,7 +81,7 @@ st.markdown("""
             color: #fff;
         }
         h2,h3 {
-            color: black;
+            color: #fff;
         }
     </style>
     """, unsafe_allow_html=True)
