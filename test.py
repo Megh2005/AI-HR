@@ -21,7 +21,7 @@ st.markdown("""
         .main {
             background-image: url('https://i.pinimg.com/236x/55/dd/b9/55ddb9331c36ea88ae05e1d998c5f3bd.jpg');
             background-size: cover;
-            color: #000;
+            color: #fff;
             padding: 1.5rem;
         }
         .element-container st-emotion-cache-f31m5j e1f1d6gn4 {
@@ -65,20 +65,20 @@ st.markdown("""
             text-decoration: none;
         }
         .css-1ujw7ow {
-            color: #0f0f0f;
+            color: #fff;
         }
         .stAlert p {
             color: #333;
             font-weight: bold;
         }
         #suitability-analysis-for-ml-engineer-position {
-            color: #000;
+            color: #fff;
         }
         .st-b4 {
             resize: none;
         }
         .e1y5xkzn3 {
-            color: #000;
+            color: #fff;
         }
         h2,h3 {
             color: black;
